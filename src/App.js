@@ -10,8 +10,8 @@ import Form from "./components/Form";
 import TasksList from "./components/TasksList";
 import Footer from "./components/Footer";
 
-function App() {
-	return (
+const App = () => {
+	let content = (
 		<div className='view'>
 			<div className='container'>
 				<div className='wrapper'>
@@ -23,7 +23,9 @@ function App() {
 			<Footer />
 		</div>
 	);
-}
+
+	return content;
+};
 
 export default App;
 
