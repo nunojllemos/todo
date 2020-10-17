@@ -1,13 +1,15 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({ handleForm }) => {
 	let content = (
-		<div>
-			<form>
-				<input type='text' placeholder='Enter new task...' />
-				<button>+</button>
-			</form>
-		</div>
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				handleForm(e.target.children[0].value, false);
+			}}>
+			<input type='text' placeholder='Enter new task...' />
+			<button>+</button>
+		</form>
 	);
 
 	return content;
