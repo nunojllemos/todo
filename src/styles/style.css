@@ -24,19 +24,21 @@
 	width: 100vw;
 	height: 100vh;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 	background-color: #eaeaea;
 }
 
 .container {
 	width: 850px;
 	height: 450px;
-	margin-top: 150px;
+	margin: 150px 1rem 0 1rem;
 	background-color: var(--dark-blue);
 	border-radius: 10px;
 	box-shadow: 0 10px 20px 10px rgba(0, 0, 0, 0.35);
 	display: flex;
 	justify-content: center;
+	overflow: hidden;
 }
 
 .wrapper {
@@ -68,16 +70,12 @@ nav > ul {
 	margin-right: 25px;
 	font-size: 22px;
 	font-weight: 100;
+	transition: all 0.5s;
 	cursor: pointer;
 }
 
 .tabs-list-item:last-child {
 	margin: 0;
-}
-
-.tabs-list-item:hover {
-	color: white;
-	transition: all 0.25s;
 }
 
 .selected {
@@ -94,9 +92,15 @@ nav > ul {
 	font-size: 16px;
 	font-weight: 300;
 	margin-top: 3px;
+	color: var(--blue);
 }
 
-.has-active {
+.active {
+	color: var(--blue);
+	border-bottom: 1px solid var(--blue);
+}
+
+.tabs-list-item:hover {
 	color: var(--blue);
 }
 
@@ -143,6 +147,21 @@ button:hover {
 /* main */
 
 main {
+	max-height: 250px;
+	overflow-y: scroll;
+}
+
+/* main scrollbar */
+
+::-webkit-scrollbar {
+	width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--blue);
+	border-radius: 10px;
+	margin-left: 20px;
+	border: solid 23px transparent;
 }
 
 /* task */
@@ -159,11 +178,11 @@ main {
 .task > li > h2 {
 	font-size: 18px;
 	font-weight: 400;
-	color: var(--gray);
 }
 
 .done {
 	text-decoration: line-through;
+	color: var(--gray);
 }
 
 .task li:nth-child(2) {
@@ -178,7 +197,7 @@ main {
 
 #check path {
 	color: var(--dark-gray);
-	transition: color 0.5s;
+	transition: color 0.2s;
 }
 
 #check path:hover {
@@ -191,9 +210,16 @@ main {
 
 #trash path:hover {
 	color: var(--gray);
-	transition: color 0.5s;
+	transition: color 0.2s;
 }
 
+.checked {
+	fill: var(--green);
+}
+
+.hide {
+	display: none;
+}
 /* footer */
 
 footer {
@@ -225,4 +251,44 @@ a {
 	font-weight: 400;
 	cursor: pointer;
 	text-decoration: none;
+}
+
+/* alert */
+
+.alert,
+.success,
+.delete {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 400px;
+	height: 40px;
+	margin-top: 50px;
+	border-radius: 10px;
+}
+
+.alert {
+	background-color: var(--red);
+}
+
+.success {
+	background-color: #5faf5f;
+}
+
+.delete {
+	background-color: var(--dark-blue);
+}
+
+.alert p,
+.success p,
+.delete p {
+	color: var(--gray);
+	margin-left: 10px;
+}
+
+.alert path,
+.success path,
+.delete path {
+	fill: var(--gray);
 }

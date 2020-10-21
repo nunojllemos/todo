@@ -5,10 +5,10 @@ const Footer = () => {
 		<footer>
 			<p>
 				made with <span id='heart'>❤</span> by{" "}
-				<span class='bold'>nuno lemos</span>
+				<span className='bold'>nuno lemos</span>
 			</p>
 			<p>
-				inspired in design by <span class='bold'>Ian Trent @</span>{" "}
+				inspired in design by <span className='bold'>Ian Trent @</span>{" "}
 				<a
 					href='https://dribbble.com/shots/6570568-Todo-List-App'
 					target='blank'>
