@@ -43,7 +43,7 @@
 
 .wrapper {
 	width: 100%;
-	margin: 20px 25px;
+	padding: 20px 25px;
 }
 
 /* navigation */
@@ -100,8 +100,10 @@ nav > ul {
 	border-bottom: 1px solid var(--blue);
 }
 
-.tabs-list-item:hover {
-	color: var(--blue);
+@media (hover: hover) {
+	.tabs-list-item:hover {
+		color: var(--blue);
+	}
 }
 
 /* form */
@@ -138,10 +140,12 @@ button {
 	box-shadow: 1px 2px 5px 2px rgba(22, 22, 22, 0.15);
 }
 
-button:hover {
-	background-color: var(--gray);
-	color: var(--blue);
-	transition: all 0.25s;
+@media (hover: hover) {
+	button:hover {
+		background-color: var(--gray);
+		color: var(--blue);
+		transition: all 0.25s;
+	}
 }
 
 /* main */
@@ -206,17 +210,21 @@ main {
 	transition: color 0.3s;
 }
 
-.check:hover #check path {
-	color: var(--green);
+@media (hover: hover) {
+	.check:hover #check path {
+		color: var(--green);
+	}
 }
 
 .trash-container {
 	cursor: pointer;
 }
 
-.trash-container:hover #trash path {
-	color: var(--red);
-	transition: color 0.3s;
+@media (hover: hover) {
+	.trash-container:hover #trash path {
+		color: var(--red);
+		transition: color 0.3s;
+	}
 }
 
 .checked #check path {
@@ -346,8 +354,22 @@ a {
 @media screen and (max-width: 576px) {
 	.container {
 		width: 90%;
-		height: 85%;
+		height: 80%;
 		margin-top: 5%;
+	}
+
+	.wrapper {
+		padding: 24px 14px;
+	}
+
+	.alert,
+	.success,
+	.delete {
+		width: 100%;
+		border-radius: 0;
+		margin-top: 0;
+		padding: 36px 12px;
+		box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.3);
 	}
 
 	button {

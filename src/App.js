@@ -92,7 +92,7 @@ const App = () => {
 				type: '',
 				message: '',
 			})
-		}, 2000)
+		}, 200000)
 	}
 
 	let content = (
