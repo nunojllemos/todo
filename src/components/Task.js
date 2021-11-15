@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const Task = ({ tasks, tab, id, body, isComplete, handleCompletion, handleDelete }) => {
+const Task = ({ id, body, isComplete, handleCompletion, handleDelete }) => {
 	const taskTitle = useRef()
 	const checkbox = useRef()
 
