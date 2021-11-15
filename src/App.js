@@ -10,7 +10,7 @@ import './styles/style.css'
 const App = () => {
 	const [tasks, setTasks] = useState([])
 	const [alert, setAlert] = useState([{ type: '', message: '' }])
-	const [key, setKey] = useState()
+	const [key, setKey] = useState(0)
 	const [tab, setTab] = useState('all')
 
 	useEffect(() => {
