@@ -1,157 +1,115 @@
-/* import dependencies */
-import React, { useState, useEffect } from "react";
-/* import components */
-import Alert from "./components/Alert";
-import Nav from "./components/Nav";
-import Form from "./components/Form";
-import TasksList from "./components/TasksList";
-import Footer from "./components/Footer";
-/* import styles */
-import "./styles/style.css";
+import React, { useState, useEffect } from 'react'
+import Alert from './components/Alert'
+import Nav from './components/Nav'
+import Form from './components/Form'
+import TasksList from './components/TasksList'
+import Footer from './components/Footer'
+import { setItemToLocalStorage, getItemFromLocalStorage } from './utils/localStorage'
+import './styles/style.css'
 
 const App = () => {
-	/* state */
-	// tasks state
-	const [tasks, setTasks] = useState([]);
-	// alert state
-	const [alert, setAlert] = useState([
-		{
-			type: "",
-			message: "",
-		},
-	]);
-	// id state
-	const [key, setKey] = useState();
-	// tab state
-	const [tab, setTab] = useState("all");
+	const [tasks, setTasks] = useState([])
+	const [alert, setAlert] = useState([{ type: '', message: '' }])
+	const [key, setKey] = useState()
+	const [tab, setTab] = useState('all')
 
-	/* handles first load of page based on local storage */
 	useEffect(() => {
-		if (JSON.parse(window.localStorage.getItem("tasks"))) {
-			if (JSON.parse(window.localStorage.getItem("tasks").length > 0)) {
-				const localStorage = JSON.parse(window.localStorage.getItem("tasks"));
+		if (getItemFromLocalStorage('tasks').length > 0) {
+			const localStorage = JSON.parse(window.localStorage.getItem('tasks'))
 
-				setTasks(localStorage);
-				setKey(localStorage.length);
-			} else {
-				setTasks([]);
-				setKey(0);
-			}
-		} else {
-			setTasks([]);
-			setKey(0);
+			setTasks(localStorage)
+			setKey(localStorage.length)
 		}
-	}, []);
+	}, [])
 
-	/* handles localStorage set items */
 	useEffect(() => {
-		window.localStorage.setItem("tasks", JSON.stringify(tasks));
-	}, [tasks]);
+		setItemToLocalStorage(tasks)
+	}, [tasks])
 
-	/* function to handle form data */
 	const handleForm = (body, isComplete) => {
-		if (body !== "") {
-			setTasks([
-				...tasks,
-				{
-					body,
-					isComplete,
-					id: key,
-				},
-			]);
-			setKey(key + 1);
+		if (body !== '') {
+			setTasks([...tasks, { body, isComplete, id: key }])
+			setKey(key + 1)
 			setAlert({
-				type: "success",
-				message: "Task added with success!",
-			});
-			clearAlert();
+				type: 'success',
+				message: 'Task added with success!',
+			})
+			clearAlert()
 		} else {
 			setAlert({
-				type: "alert",
+				type: 'alert',
 				message: "Field can't be empty!",
-			});
-			clearAlert();
+			})
+			clearAlert()
 		}
-	};
+	}
 
-	/* handle completion of task */
 	const handleCompletion = (id, status) => {
 		setTasks(
-			tasks.map((task) => {
-				return task.id === id ? { ...task, isComplete: status } : task;
+			tasks.map(task => {
+				return task.id === id ? { ...task, isComplete: status } : task
 			})
-		);
+		)
 
-		// handle alert message
 		if (status) {
-			// if task completed
 			setAlert({
-				type: "success",
-				message: "Task completed!",
-			});
+				type: 'success',
+				message: 'Task completed!',
+			})
 		} else {
-			// if task uncompleted
 			setAlert({
-				type: "alert",
-				message: "Task uncompleted!",
-			});
+				type: 'alert',
+				message: 'Task uncompleted!',
+			})
 		}
-		clearAlert();
-	};
+		clearAlert()
+	}
 
-	/* handle delete task */
-	const handleDelete = (id) => {
-		let newTasks = tasks.filter((task) => {
-			return task.id !== id;
-		});
+	const handleDelete = id => {
+		let newTasks = tasks.filter(task => {
+			return task.id !== id
+		})
 
-		// let user confirm the delete option
-		if (window.confirm("Delete task?")) {
-			setTasks(newTasks);
+		if (window.confirm('Delete task?')) {
+			setTasks(newTasks)
 			setAlert({
-				type: "delete",
-				message: "Task was deleted!",
-			});
-			clearAlert();
+				type: 'delete',
+				message: 'Task was deleted!',
+			})
+			clearAlert()
 		}
-	};
+	}
 
-	/* handle tab selected */
-	const handleTab = (tab) => {
-		setTab(tab);
-	};
+	const handleTab = tab => {
+		console.log(tab)
+		console.log('clicked')
+		setTab(tab)
+	}
 
-	/* clear the alert state after 1.5 seconds */
 	const clearAlert = () => {
 		setTimeout(() => {
 			setAlert({
-				type: "",
-				message: "",
-			});
-		}, 1000);
-	};
+				type: '',
+				message: '',
+			})
+		}, 2000)
+	}
 
-	/* content */
 	let content = (
-		<div className='view'>
+		<div className="view">
 			<Alert alert={alert} />
-			<div className='container'>
-				<div className='wrapper'>
+			<div className="container">
+				<div className="wrapper">
 					<Nav tab={tab} handleTab={handleTab} tasks={tasks} />
 					<Form handleForm={handleForm} />
-					<TasksList
-						tab={tab}
-						handleDelete={handleDelete}
-						handleCompletion={handleCompletion}
-						tasks={tasks}
-					/>
+					<main>{tasks.length > 0 ? <TasksList tab={tab} handleDelete={handleDelete} handleCompletion={handleCompletion} tasks={tasks} /> : 'Add a taks 🚀'}</main>
 				</div>
 			</div>
 			<Footer />
 		</div>
-	);
+	)
 
-	return content;
-};
+	return content
+}
 
-export default App;
+export default App

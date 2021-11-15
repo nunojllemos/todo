@@ -1,52 +1,32 @@
-/* import dependencies */
-import React, { useEffect } from "react";
+import React from 'react'
+import { getWeekDay, getMonth, getDay } from '../utils/date'
 
 const Nav = ({ tab, tasks, handleTab }) => {
-	/* handle selected tab */
-	const handleSelectedTab = (e) => {
-		e.preventDefault();
-		if (e.target.className.includes("tabs-list-item")) {
-			let tab = e.target.innerText;
-			handleTab(tab);
-		}
-	};
-
-	useEffect(() => {
-		const tabs = document.querySelector(".tabs-list").children;
-
-		for (let i = 0; i < tabs.length; i++) {
-			if (tabs[i].innerText.toLowerCase() === tab.toLowerCase()) {
-				tabs[i].classList.add("active");
-			} else {
-				tabs[i].classList.remove("active");
-			}
-		}
-	}, [tab]);
-
-	/* content */
 	let content = (
 		<nav>
 			<ul>
 				<li>
-					<h3 className='date'>Sunday, October 16</h3>
-					<p className='active-tasks has-active'>
-						{tasks.length === 1
-							? `${tasks.length} active task`
-							: `${tasks.length} active tasks`}
-					</p>
+					<h3 className="date">{`${getWeekDay()}, ${getMonth()} ${getDay()}`}</h3>
+					<p className="active-tasks has-active">{tasks.length === 1 ? `${tasks.length} active task` : `${tasks.length} active tasks`}</p>
 				</li>
-				<li className='tabs'>
-					<ul onClick={handleSelectedTab} className='tabs-list'>
-						<li className='tabs-list-item all'>All</li>
-						<li className='tabs-list-item complete'>Complete</li>
-						<li className='tabs-list-item incomplete'>Incomplete</li>
+				<li className="tabs">
+					<ul className="tabs-list">
+						<li onClick={() => handleTab('all')} className={`tabs-list-item all ${tab === 'all' ? 'active' : ''}`}>
+							All
+						</li>
+						<li onClick={() => handleTab('complete')} className={`tabs-list-item complete ${tab === 'complete' ? 'active' : ''}`}>
+							Complete
+						</li>
+						<li onClick={() => handleTab('incomplete')} className={`tabs-list-item incomplete ${tab === 'incomplete' ? 'active' : ''}`}>
+							Incomplete
+						</li>
 					</ul>
 				</li>
 			</ul>
 		</nav>
-	);
+	)
 
-	return content;
-};
+	return content
+}
 
-export default Nav;
+export default Nav
