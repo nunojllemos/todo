@@ -14,7 +14,7 @@ const App = () => {
 	const [tab, setTab] = useState('all')
 
 	useEffect(() => {
-		if (getItemFromLocalStorage('tasks').length > 0) {
+		if (getItemFromLocalStorage('tasks') && getItemFromLocalStorage('tasks').length > 0) {
 			const localStorage = JSON.parse(window.localStorage.getItem('tasks'))
 
 			setTasks(localStorage)
