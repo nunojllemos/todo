@@ -7,7 +7,7 @@ const Nav = ({ tab, tasks, handleTab }) => {
 			<ul>
 				<li>
 					<h3 className="date">{`${getWeekDay()}, ${getMonth()} ${getDay()}`}</h3>
-					<p className="active-tasks has-active">{tasks.length === 1 ? `${tasks.length} active task` : `${tasks.length} active tasks`}</p>
+					{tasks.length > 0 ? <p className="active-tasks has-active">{tasks.length === 1 ? `${tasks.length} active task` : `${tasks.length} active tasks`}</p> : <p className="active-tasks has-active">0 active tasks</p>}
 				</li>
 				<li className="tabs">
 					<ul className="tabs-list">
