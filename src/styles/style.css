@@ -302,3 +302,69 @@ a {
 .delete path {
 	fill: var(--gray);
 }
+
+@media screen and (max-width: 991px) {
+	.container {
+		width: 80%;
+	}
+
+	form {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	input[type='text'] {
+		flex-basis: 85%;
+	}
+
+	nav > ul {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.tabs {
+		margin-top: 24px;
+	}
+
+	.tabs-list-item {
+		font-size: 16px;
+	}
+
+	.task > li > h2 {
+		font-size: 16px;
+	}
+
+	.active-tasks {
+		font-size: 14px;
+	}
+
+	footer {
+		padding: 24px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.container {
+		width: 90%;
+		height: 85%;
+		margin-top: 5%;
+	}
+
+	button {
+		margin-left: 20px;
+	}
+
+	footer {
+		display: flex;
+		flex-direction: column;
+		padding: 12px;
+	}
+
+	footer p {
+		font-size: 14px;
+	}
+
+	footer p + p {
+		margin-top: 6px;
+	}
+}
