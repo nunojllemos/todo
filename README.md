@@ -1,5 +1,17 @@
-## To do list App
+# Todo App ✅ 
+This project was developed for study purposes.  
+It is your regular to do app that lets you add tasks or delete them.  
+Tasks can also be filtered by its state of completition.
 
-### Created using React JS with hooks.
+## Tools used 🧰
 
-<img src="https://media.giphy.com/media/oTwMRmX1Qrf2ic3Qf4/giphy.gif" alt="to do list app" />
+- React
+  - useEffect
+  - useState
+  - useRef
+- CSS
+- Local Storage
+
+<img src="https://i.imgur.com/qK2aqkV.png" />
+
+#### Design was inspired from [Ian Trent](https://dribbble.com/shots/6570568-Todo-List-App) work 👨🏼‍🎨
